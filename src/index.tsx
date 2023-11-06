@@ -74,7 +74,7 @@ export const useClearCache = (props?: OwnProps) => {
   };
 
   // Replace any last slash with an empty space
-  const baseUrl = basePath.replace(/\/+$/, '') + '/' + filename;
+  const baseUrl = basePath + '/' + filename;
 
   function fetchMeta() {
     try {
