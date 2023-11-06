@@ -66,7 +66,7 @@ ReactDOM.render(
   <ClearCacheProvider duration={5000}>
     <App />
   </ClearCacheProvider>,
-  document.getElementById('root')
+  document.getElementById('root'),
 );
 ```
 

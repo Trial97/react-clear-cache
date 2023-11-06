@@ -9,5 +9,5 @@ ReactDOM.render(
   <ClearCacheProvider duration={5000} filename="build.json">
     <App />
   </ClearCacheProvider>,
-  document.getElementById('root')
+  document.getElementById('root'),
 );
