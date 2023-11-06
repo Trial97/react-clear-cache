@@ -4,20 +4,41 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 var React = require('react');
 
-/*! *****************************************************************************
-Copyright (c) Microsoft Corporation. All rights reserved.
-Licensed under the Apache License, Version 2.0 (the "License"); you may not use
-this file except in compliance with the License. You may obtain a copy of the
-License at http://www.apache.org/licenses/LICENSE-2.0
+function _interopNamespaceDefault(e) {
+    var n = Object.create(null);
+    if (e) {
+        Object.keys(e).forEach(function (k) {
+            if (k !== 'default') {
+                var d = Object.getOwnPropertyDescriptor(e, k);
+                Object.defineProperty(n, k, d.get ? d : {
+                    enumerable: true,
+                    get: function () { return e[k]; }
+                });
+            }
+        });
+    }
+    n.default = e;
+    return Object.freeze(n);
+}
 
-THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
-WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
-MERCHANTABLITY OR NON-INFRINGEMENT.
+var React__namespace = /*#__PURE__*/_interopNamespaceDefault(React);
 
-See the Apache Version 2.0 License for specific language governing permissions
-and limitations under the License.
+/******************************************************************************
+Copyright (c) Microsoft Corporation.
+
+Permission to use, copy, modify, and/or distribute this software for any
+purpose with or without fee is hereby granted.
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
+AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
+INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
+LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
+OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
+PERFORMANCE OF THIS SOFTWARE.
 ***************************************************************************** */
+/* global Reflect, Promise, SuppressedError, Symbol */
+
 
 var __assign = function() {
     __assign = Object.assign || function __assign(t) {
@@ -30,11 +51,24 @@ var __assign = function() {
     return __assign.apply(this, arguments);
 };
 
+function __rest(s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
+                t[p[i]] = s[p[i]];
+        }
+    return t;
+}
+
 function __awaiter(thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 }
@@ -45,7 +79,7 @@ function __generator(thisArg, body) {
     function verb(n) { return function (v) { return step([n, v]); }; }
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
+        while (g && (g = 0, op[0] && (_ = 0)), _) try {
             if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
             if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
@@ -67,25 +101,38 @@ function __generator(thisArg, body) {
     }
 }
 
-function r(e,r,i){void 0===i&&(i=global);var o=React.useRef();React.useEffect(function(){o.current=r;},[r]),React.useEffect(function(){if(i&&i.addEventListener){var n=function(n){return o.current(n)};return i.addEventListener(e,n),function(){i.removeEventListener(e,n);}}},[e,i]);}
+typeof SuppressedError === "function" ? SuppressedError : function (error, suppressed, message) {
+    var e = new Error(message);
+    return e.name = "SuppressedError", e.error = error, e.suppressed = suppressed, e;
+};
 
-var u={},c=function(t,n,e){return u[t]||(u[t]={callbacks:[],value:e}),u[t].callbacks.push(n),{deregister:function(){var e=u[t].callbacks,r$$1=e.indexOf(n);r$$1>-1&&e.splice(r$$1,1);},emit:function(e){u[t].value!==e&&(u[t].value=e,u[t].callbacks.forEach(function(t){n!==t&&t(e);}));}}};function createPersistedState(u,i){if(void 0===i&&(i=global.localStorage),i){var o=function(t){return {get:function(n,e){var r$$1=t.getItem(n);return null===r$$1?"function"==typeof e?e():e:JSON.parse(r$$1)},set:function(n,e){t.setItem(n,JSON.stringify(e));}}}(i);return function(i){return function(u,i,o){var a=o.get,f=o.set,l=React.useRef(null),s=React.useState(function(){return a(i,u)}),v=s[0],g=s[1];return r("storage",function(t){var n=t.key,e=JSON.parse(t.newValue);n===i&&v!==e&&g(e);}),React.useEffect(function(){return l.current=c(i,g,u),function(){l.current.deregister();}},[]),React.useEffect(function(){f(i,v),l.current.emit(v);},[v]),[v,g]}(i,u,o)}}return React.useState}
+function r(t,r,i,o){void 0===i&&(i=global),void 0===o&&(o={});var c=React.useRef(),u=o.capture,a=o.passive,v=o.once;React.useEffect(function(){c.current=r;},[r]),React.useEffect(function(){if(i&&i.addEventListener){var e=function(e){return c.current(e)},n={capture:u,passive:a,once:v};return i.addEventListener(t,e,n),function(){i.removeEventListener(t,e,n);}}},[t,i,u,a,v]);}
 
-var _this = undefined;
+var l={},a=function(e,n,t){return l[e]||(l[e]={callbacks:[],value:t}),l[e].callbacks.push(n),{deregister:function(){var t=l[e].callbacks,o=t.indexOf(n);o>-1&&t.splice(o,1);},emit:function(t){l[e].value!==t&&(l[e].value=t,l[e].callbacks.forEach(function(e){n!==e&&e(t);}));}}};function createPersistedState(l,u){if(void 0===u&&(u="undefined"!=typeof global&&global.localStorage?global.localStorage:"undefined"!=typeof globalThis&&globalThis.localStorage?globalThis.localStorage:"undefined"!=typeof window&&window.localStorage?window.localStorage:"undefined"!=typeof localStorage?localStorage:null),u){var i=function(e){return {get:function(n,t){var o=e.getItem(n);return null==o?"function"==typeof t?t():t:JSON.parse(o)},set:function(n,t){e.setItem(n,JSON.stringify(t));}}}(u);return function(u){return function(l,u,i){var c=i.get,f=i.set,g=React.useRef(null),s=React.useState(function(){return c(u,l)}),d=s[0],p=s[1];r("storage",function(e){if(e.key===u){var n=JSON.parse(e.newValue);d!==n&&p(n);}}),React.useEffect(function(){return g.current=a(u,p,l),function(){g.current.deregister();}},[l,u]);var v=React.useCallback(function(e){var n="function"==typeof e?e(d):e;f(u,n),p(n),g.current.emit(e);},[d,f,u]);return [d,v]}(u,l,i)}}return React.useState}
+
 var STORAGE_KEY = 'APP_VERSION';
 var defaultProps = {
     duration: 60 * 1000,
     auto: false,
     storageKey: STORAGE_KEY,
-    basePath: ''
+    basePath: '',
+    filename: 'meta.json',
 };
+var ClearCacheContext = React__namespace.createContext({});
+var ClearCacheProvider = function (props) {
+    var children = props.children, otherProps = __rest(props, ["children"]);
+    var result = useClearCache(otherProps);
+    return (React__namespace.createElement(ClearCacheContext.Provider, { value: result }, children));
+};
+var useClearCacheCtx = function () { return React__namespace.useContext(ClearCacheContext); };
+var fetchCacheTimeout;
 var useClearCache = function (props) {
-    var _a = __assign({}, defaultProps, props), duration = _a.duration, auto = _a.auto, storageKey = _a.storageKey, basePath = _a.basePath;
-    var _b = React.useState(true), loading = _b[0], setLoading = _b[1];
+    var _a = __assign(__assign({}, defaultProps), props), duration = _a.duration, auto = _a.auto, storageKey = _a.storageKey, basePath = _a.basePath, filename = _a.filename;
+    var _b = React__namespace.useState(true), loading = _b[0], setLoading = _b[1];
     var useAppVersionState = createPersistedState(storageKey);
     var _c = useAppVersionState(''), appVersion = _c[0], setAppVersion = _c[1];
-    var _d = React.useState(true), isLatestVersion = _d[0], setIsLatestVersion = _d[1];
-    var _e = React.useState(appVersion), latestVersion = _e[0], setLatestVersion = _e[1];
+    var _d = React__namespace.useState(true), isLatestVersion = _d[0], setIsLatestVersion = _d[1];
+    var _e = React__namespace.useState(appVersion), latestVersion = _e[0], setLatestVersion = _e[1];
     function setVersion(version) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
@@ -98,76 +145,95 @@ var useClearCache = function (props) {
             });
         });
     }
-    var emptyCacheStorage = function (version) { return __awaiter(_this, void 0, void 0, function () {
+    var emptyCacheStorage = function (version) { return __awaiter(void 0, void 0, void 0, function () {
+        var cacheKeys;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    if ('caches' in window) {
-                        // Service worker cache should be cleared with caches.delete()
-                        caches.keys().then(function (names) {
-                            // eslint-disable-next-line no-restricted-syntax
-                            for (var _i = 0, names_1 = names; _i < names_1.length; _i++) {
-                                var name_1 = names_1[_i];
-                                caches.delete(name_1);
-                            }
-                        });
-                    }
-                    // clear browser cache and reload page
-                    return [4 /*yield*/, setVersion(version || latestVersion).then(function () {
-                            return window.location.reload(true);
-                        })];
+                    if (!('caches' in window)) return [3 /*break*/, 3];
+                    return [4 /*yield*/, window.caches.keys()];
                 case 1:
+                    cacheKeys = _a.sent();
+                    return [4 /*yield*/, Promise.all(cacheKeys.map(function (key) {
+                            window.caches.delete(key);
+                        }))];
+                case 2:
+                    _a.sent();
+                    _a.label = 3;
+                case 3: 
+                // clear browser cache and reload page
+                return [4 /*yield*/, setVersion(version || latestVersion)];
+                case 4:
                     // clear browser cache and reload page
                     _a.sent();
+                    window.location.replace(window.location.href);
                     return [2 /*return*/];
             }
         });
     }); };
     // Replace any last slash with an empty space
-    var baseUrl = basePath.replace(/\/+$/, '') + '/meta.json';
+    var baseUrl = basePath.replace(/\/+$/, '') + '/' + filename;
     function fetchMeta() {
-        fetch(baseUrl, {
-            cache: 'no-store'
-        })
-            .then(function (response) { return response.json(); })
-            .then(function (meta) {
-            var newVersion = meta.version;
-            var currentVersion = appVersion;
-            var isUpdated = newVersion === currentVersion;
-            if (!isUpdated && !auto) {
-                console.log('An update is available!');
-                setLatestVersion(newVersion);
-                setLoading(false);
-                if (appVersion) {
-                    setIsLatestVersion(false);
+        try {
+            fetch(baseUrl, {
+                cache: 'no-store',
+            })
+                .then(function (response) { return response.json(); })
+                .then(function (meta) {
+                var newVersion = meta.version;
+                var currentVersion = appVersion;
+                var isUpdated = newVersion === currentVersion;
+                if (!isUpdated && !auto) {
+                    setLatestVersion(newVersion);
+                    setLoading(false);
+                    if (appVersion) {
+                        setIsLatestVersion(false);
+                    }
+                    else {
+                        setVersion(newVersion);
+                    }
+                }
+                else if (!isUpdated && auto) {
+                    emptyCacheStorage(newVersion);
                 }
                 else {
-                    setVersion(newVersion);
+                    setIsLatestVersion(true);
+                    setLoading(false);
                 }
-            }
-            else if (!isUpdated && auto) {
-                emptyCacheStorage(newVersion);
-            }
-            else {
-                setIsLatestVersion(true);
-                setLoading(false);
-            }
-        });
+            });
+        }
+        catch (err) {
+            console.error(err);
+        }
     }
-    React.useEffect(function () {
-        var fetchCacheTimeout = setInterval(function () { return fetchMeta(); }, duration);
+    React__namespace.useEffect(function () {
+        fetchCacheTimeout = setInterval(function () { return fetchMeta(); }, duration);
         return function () {
             clearInterval(fetchCacheTimeout);
         };
     }, [loading]);
-    React.useEffect(function () {
+    var startVersionCheck = React__namespace.useRef(function () { });
+    var stopVersionCheck = React__namespace.useRef(function () { });
+    startVersionCheck.current = function () {
+        if (window.navigator.onLine) {
+            fetchCacheTimeout = setInterval(function () { return fetchMeta(); }, duration);
+        }
+    };
+    stopVersionCheck.current = function () {
+        clearInterval(fetchCacheTimeout);
+    };
+    React__namespace.useEffect(function () {
+        window.addEventListener('focus', startVersionCheck.current);
+        window.addEventListener('blur', stopVersionCheck.current);
+    }, []);
+    React__namespace.useEffect(function () {
         fetchMeta();
     }, []);
     return {
         loading: loading,
         isLatestVersion: isLatestVersion,
         emptyCacheStorage: emptyCacheStorage,
-        latestVersion: latestVersion
+        latestVersion: latestVersion,
     };
 };
 var ClearCache = function (props) {
@@ -176,10 +242,12 @@ var ClearCache = function (props) {
     return children({
         loading: loading,
         isLatestVersion: isLatestVersion,
-        emptyCacheStorage: emptyCacheStorage
+        emptyCacheStorage: emptyCacheStorage,
     });
 };
 
-exports.useClearCache = useClearCache;
+exports.ClearCacheProvider = ClearCacheProvider;
 exports.default = ClearCache;
+exports.useClearCache = useClearCache;
+exports.useClearCacheCtx = useClearCacheCtx;
 //# sourceMappingURL=index.js.map

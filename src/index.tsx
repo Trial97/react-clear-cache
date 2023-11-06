@@ -21,14 +21,14 @@ type OwnProps = {
 };
 
 type Result = {
-  loading: boolean,
+  loading: boolean;
   isLatestVersion: boolean;
-  emptyCacheStorage: (version?:string | undefined) => Promise<void>
-}
+  emptyCacheStorage: (version?: string | undefined) => Promise<void>;
+};
 
 const ClearCacheContext = React.createContext<Result>({} as Result);
 
-export const ClearCacheProvider: React.FC<OwnProps> = props => {
+export const ClearCacheProvider: React.FC<OwnProps> = (props) => {
   const { children, ...otherProps } = props;
   const result = useClearCache(otherProps);
   return (
@@ -45,7 +45,7 @@ let fetchCacheTimeout: any;
 export const useClearCache = (props?: OwnProps) => {
   const { duration, auto, storageKey, basePath, filename } = {
     ...defaultProps,
-    ...props
+    ...props,
   };
   const [loading, setLoading] = React.useState(true);
   const useAppVersionState = createPersistedState(storageKey);
@@ -61,13 +61,15 @@ export const useClearCache = (props?: OwnProps) => {
     if ('caches' in window) {
       // Service worker cache should be cleared with caches.delete()
       const cacheKeys = await window.caches.keys();
-      await Promise.all(cacheKeys.map(key => {
-        window.caches.delete(key)
-      }));
+      await Promise.all(
+        cacheKeys.map((key) => {
+          window.caches.delete(key);
+        })
+      );
     }
 
     // clear browser cache and reload page
-    await setVersion(version || latestVersion);
+    await setVersion((version as string) || (latestVersion as string));
     window.location.replace(window.location.href);
   };
 
@@ -77,10 +79,10 @@ export const useClearCache = (props?: OwnProps) => {
   function fetchMeta() {
     try {
       fetch(baseUrl, {
-        cache: 'no-store'
+        cache: 'no-store',
       })
-        .then(response => response.json())
-        .then(meta => {
+        .then((response) => response.json())
+        .then((meta) => {
           const newVersion = meta.version;
           const currentVersion = appVersion;
           const isUpdated = newVersion === currentVersion;
@@ -141,11 +143,11 @@ export const useClearCache = (props?: OwnProps) => {
     loading,
     isLatestVersion,
     emptyCacheStorage,
-    latestVersion
+    latestVersion,
   };
 };
 
-const ClearCache: React.FC<OwnProps> = props => {
+const ClearCache: React.FC<OwnProps> = (props) => {
   const { loading, isLatestVersion, emptyCacheStorage } = useClearCache(props);
 
   const { children } = props;
@@ -153,7 +155,7 @@ const ClearCache: React.FC<OwnProps> = props => {
   return children({
     loading,
     isLatestVersion,
-    emptyCacheStorage
+    emptyCacheStorage,
   });
 };
 
