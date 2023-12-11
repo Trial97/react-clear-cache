@@ -62,7 +62,7 @@
     "rollup-plugin-postcss": "^4.0.2",
     "rollup-plugin-typescript2": "^0.36.0",
     "rollup-plugin-url": "^3.0.1",
-    "typescript": "^4"
+    "typescript": "^5"
   },
   "lint-staged": {
     "**/*": "prettier --write . --config ./.prettierrc --ignore-unknown"
